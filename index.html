@@ -1,27 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>File Size Converter</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Size Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin: 50px auto;
+            max-width: 400px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        input, select, button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>File Size Converter</h1>
-    <label for="fileSize">Enter File Size:</label>
-    <input type="number" id="fileSize" placeholder="Enter size (e.g., 1024)" required>
-    <select id="unitFrom">
-      <option value="B">Bytes (B)</option>
-      <option value="KB">Kilobytes (KB)</option>
-      <option value="MB">Megabytes (MB)</option>
-      <option value="GB">Gigabytes (GB)</option>
-      <option value="TB">Terabytes (TB)</option>
-    </select>
-    <button onclick="convertSize()">Convert</button>
-    <div id="results"></div>
-  </div>
-  <script src="script.js"></script>
+    <div class="container">
+        <h1>File Size Converter</h1>
+        <input type="number" id="inputValue" placeholder="Enter size (e.g., 500)">
+        <select id="inputUnit">
+            <option value="bytes">Bytes</option>
+            <option value="kb">Kilobytes (KB)</option>
+            <option value="mb">Megabytes (MB)</option>
+            <option value="gb">Gigabytes (GB)</option>
+            <option value="tb">Terabytes (TB)</option>
+        </select>
+        <select id="outputUnit">
+            <option value="bytes">Bytes</option>
+            <option value="kb">Kilobytes (KB)</option>
+            <option value="mb">Megabytes (MB)</option>
+            <option value="gb">Gigabytes (GB)</option>
+            <option value="tb">Terabytes (TB)</option>
+        </select>
+        <button onclick="convertSize()">Convert</button>
+        <div class="result" id="result"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
