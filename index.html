@@ -1,10 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centered Heading</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS directly inside for simplicity */
+        html, body {
+            height: 100%; /* Make sure the body and HTML fill the viewport */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Enable flexbox */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+        }
+
+        h1 {
+            font-size: 3rem; /* Customize the heading size */
+            color: black; /* Set heading color to black */
+        }
+    </style>
 </head>
 <body>
     <h1>Heading in the Center</h1>
