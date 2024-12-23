@@ -5,26 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Converter</title>
     <style>
-        /* CSS directly inside for simplicity */
+        /* Basic styling */
         html, body {
-            height: 100%; /* Make sure the body and HTML fill the viewport */
-            margin: 0; /* Remove default margin */
-            display: flex; /* Enable flexbox */
-            flex-direction: column; /* Stack content vertically */
-            justify-content: center; /* Center content vertically */
-            align-items: center; /* Center content horizontally */
+            height: 100%; /* Full height */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
         }
 
         h1 {
-            font-size: 3rem; /* Customize the heading size */
-            color: black; /* Set heading color to black */
-            margin-bottom: 20px; /* Add space between the heading and other elements */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
         }
 
         .extra-input {
-            display: flex; /* Align input and dropdown side by side */
-            gap: 10px; /* Add space between the elements */
-            margin-top: 20px; /* Space below the heading */
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         input, select {
@@ -35,14 +42,13 @@
         }
 
         input {
-            width: 200px; /* Fixed width for the input field */
+            width: 200px;
         }
 
         select {
-            width: 150px; /* Fixed width for the dropdown */
+            width: 150px;
         }
 
-        /* Switch Button Style */
         .switch-button {
             padding: 10px 20px;
             background-color: #2196F3;
@@ -50,14 +56,13 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .switch-button:hover {
             background-color: #1976D2;
         }
 
-        /* Output Box */
         .output-box {
             margin-top: 20px;
             padding: 10px;
@@ -66,25 +71,16 @@
             width: 300px;
             text-align: center;
         }
-
-        /* Flex container for input, dropdowns, and switch */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
     </style>
 </head>
 <body>
     <h1>File Converter</h1>
 
-    <!-- Main Container -->
-    <div class="container" id="main-container">
-        <!-- First Input and Dropdown -->
-        <div class="extra-input" id="first-section">
-            <input type="text" id="input1" placeholder="Enter a value">
-            <select id="select1">
+    <div class="container">
+        <!-- Input field and dropdown for unit conversion -->
+        <div class="extra-input">
+            <input type="number" id="inputValue" placeholder="Enter value">
+            <select id="inputUnit">
                 <option value="bytes">Bytes</option>
                 <option value="kilobytes">Kilobytes</option>
                 <option value="megabytes">Megabytes</option>
@@ -93,46 +89,115 @@
             </select>
         </div>
 
-        <!-- Switch Button -->
-        <button class="switch-button" id="switchButton">Switch Inputs</button>
+        <!-- Switch button -->
+        <button class="switch-button" id="switchButton">Switch Conversion</button>
 
-        <!-- Second Dropdown and Output Box -->
-        <div class="extra-input" id="second-section">
-            <select id="select2">
-                <option value="bytes">Bytes</option>
+        <!-- Output field and dropdown for target conversion -->
+        <div class="extra-input">
+            <input type="number" id="outputValue" placeholder="Converted value" readonly>
+            <select id="outputUnit">
                 <option value="kilobytes">Kilobytes</option>
                 <option value="megabytes">Megabytes</option>
                 <option value="gigabytes">Gigabytes</option>
                 <option value="terabytes">Terabytes</option>
+                <option value="bytes">Bytes</option>
             </select>
-            <input type="text" id="input2" placeholder="Enter a value">
         </div>
 
         <!-- Output Box -->
         <div class="output-box" id="outputBox">
-            Output will appear here
+            Conversion result will appear here
         </div>
     </div>
 
     <script>
-        // Get elements
-        const switchButton = document.getElementById("switchButton");
-        const firstSection = document.getElementById("first-section");
-        const secondSection = document.getElementById("second-section");
+        // Get references to elements
+        const switchButton = document.getElementById('switchButton');
+        const inputValue = document.getElementById('inputValue');
+        const inputUnit = document.getElementById('inputUnit');
+        const outputValue = document.getElementById('outputValue');
+        const outputUnit = document.getElementById('outputUnit');
+        const outputBox = document.getElementById('outputBox');
 
-        // Function to swap the inputs and dropdowns
-        function swapInputs() {
-            // Get the HTML content of both sections
-            const firstSectionContent = firstSection.innerHTML;
-            const secondSectionContent = secondSection.innerHTML;
+        // Conversion function (basic example for data sizes)
+        function convertValue() {
+            let inputValueNum = parseFloat(inputValue.value);
+            if (isNaN(inputValueNum) || inputValue.value === "") {
+                outputBox.textContent = "Please enter a valid number.";
+                return;
+            }
 
-            // Swap the content between the two sections
-            firstSection.innerHTML = secondSectionContent;
-            secondSection.innerHTML = firstSectionContent;
+            const inputUnitValue = inputUnit.value;
+            const outputUnitValue = outputUnit.value;
+            let result;
+
+            // Convert input value to bytes first
+            switch (inputUnitValue) {
+                case "bytes":
+                    result = inputValueNum;
+                    break;
+                case "kilobytes":
+                    result = inputValueNum * 1024;
+                    break;
+                case "megabytes":
+                    result = inputValueNum * 1024 * 1024;
+                    break;
+                case "gigabytes":
+                    result = inputValueNum * 1024 * 1024 * 1024;
+                    break;
+                case "terabytes":
+                    result = inputValueNum * 1024 * 1024 * 1024 * 1024;
+                    break;
+                default:
+                    result = inputValueNum;
+            }
+
+            // Convert bytes to the output unit
+            switch (outputUnitValue) {
+                case "bytes":
+                    result = result;
+                    break;
+                case "kilobytes":
+                    result = result / 1024;
+                    break;
+                case "megabytes":
+                    result = result / (1024 * 1024);
+                    break;
+                case "gigabytes":
+                    result = result / (1024 * 1024 * 1024);
+                    break;
+                case "terabytes":
+                    result = result / (1024 * 1024 * 1024 * 1024);
+                    break;
+                default:
+                    result = result;
+            }
+
+            // Display result in the output box
+            outputValue.value = result.toFixed(4);
+            outputBox.textContent = `Converted value: ${result.toFixed(4)} ${outputUnit.value}`;
         }
 
-        // Event listener for the switch button
-        switchButton.addEventListener("click", swapInputs);
+        // Event listener for the switch button (toggle units)
+        switchButton.addEventListener('click', function() {
+            // Swap input and output units and values
+            const tempValue = inputValue.value;
+            const tempUnit = inputUnit.value;
+
+            inputValue.value = outputValue.value;
+            inputUnit.value = outputUnit.value;
+
+            outputValue.value = tempValue;
+            outputUnit.value = tempUnit;
+
+            // Trigger the conversion after the switch
+            convertValue();
+        });
+
+        // Automatically convert when input value or units change
+        inputValue.addEventListener('input', convertValue);
+        inputUnit.addEventListener('change', convertValue);
+        outputUnit.addEventListener('change', convertValue);
     </script>
 </body>
 </html>
