@@ -1,28 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Heading</title>
+    <title>File Converter</title>
     <style>
         /* CSS directly inside for simplicity */
         html, body {
             height: 100%; /* Make sure the body and HTML fill the viewport */
             margin: 0; /* Remove default margin */
             display: flex; /* Enable flexbox */
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
         }
 
         h1 {
             font-size: 3rem; /* Customize the heading size */
             color: black; /* Set heading color to black */
-            transform: translateY(-20px); /* Move the heading up by 20px */
+            margin-bottom: 20px; /* Add space between the heading and other elements */
+        }
+
+        .extra-input {
+            display: flex; /* Align input and dropdown side by side */
+            gap: 10px; /* Add space between the elements */
+            margin-top: 20px; /* Space below the heading */
+        }
+
+        input, select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 200px; /* Fixed width for the input field */
+        }
+
+        select {
+            width: 150px; /* Fixed width for the dropdown */
         }
     </style>
 </head>
 <body>
     <h1>Heading in the Center</h1>
+
+    <!-- Box and Dropdown -->
+    <div class="extra-input">
+        <input type="text" placeholder="Enter a value">
+        <select>
+            <option value="bytes">Bytes</option>
+            <option value="kilobytes">Kilobytes</option>
+            <option value="megabytes">Megabytes</option>
+            <option value="gigabytes">Gigabytes</option>
+            <option value="terabytes">Terabytes</option>
+        </select>
+    </div>
 </body>
 </html>
