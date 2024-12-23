@@ -1,46 +1,82 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
+  background-color: #f4f4f9;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-.container {
-  background: #fff;
+.converter-container {
+  background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 400px;
   text-align: center;
 }
 
 h1 {
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
-input, select, button {
-  margin: 10px;
+.input-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+input, select {
   padding: 10px;
-  font-size: 1rem;
+  font-size: 16px;
+  margin: 0 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #6c5ce7;
+}
+
+span {
+  font-size: 18px;
+  align-self: center;
+}
+
+.button-group {
+  margin-bottom: 20px;
 }
 
 button {
-  background-color: #007bff;
-  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 5px;
   border: none;
-  border-radius: 5px;
+  background-color: #6c5ce7;
+  color: #fff;
+  border-radius: 4px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #5a4fc1;
 }
 
-#results {
+#result {
+  font-size: 18px;
+  font-weight: bold;
   margin-top: 20px;
-  font-size: 1.2rem;
+  color: #2d3436;
+}
+
+button:active {
+  transform: scale(0.98);
 }
