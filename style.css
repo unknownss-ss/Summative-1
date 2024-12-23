@@ -16,5 +16,6 @@ body {
 /* Optional styling for the heading */
 h1 {
     font-size: 3rem;
-    color: #333;
+    color: black;
+    transform: translateY(-20px); /* Move the heading up by 20px */
 }
