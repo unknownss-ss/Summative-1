@@ -1,29 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Heading</title>
-    <style>
-        /* CSS directly inside for simplicity */
-        html, body {
-            height: 100%; /* Make sure the body and HTML fill the viewport */
-            margin: 0; /* Remove default margin */
-            display: flex; /* Enable flexbox */
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
-        }
-
-        h1 {
-            font-size: 3rem; /* Customize the heading size */
-            color: black; /* Set heading color to black */
-            transform: translateY(-20px); /* Move the heading up by 20px */
-        }
-    </style>
+    <title>File Converter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Heading in the Center</h1>
+    <div class="converter">
+        <h1>File Converter</h1>
+        <div class="conversion-container">
+            <!-- First Input and Dropdown -->
+            <div class="conversion-row">
+                <label for="input1">Enter file size</label>
+                <input type="number" id="input1" placeholder="Enter file size">
+                <select id="unit1">
+                    <option value="bytes">Bytes</option>
+                    <option value="kilobytes">Kilobytes</option>
+                    <option value="megabytes">Megabytes</option>
+                    <option value="gigabytes">Gigabytes</option>
+                    <option value="terabytes">Terabytes</option>
+                </select>
+            </div>
+
+            <!-- Switch Button -->
+            <div class="switch">
+                <button id="switch-btn">⇅</button>
+            </div>
+
+            <!-- Second Input and Dropdown -->
+            <div class="conversion-row">
+                <label for="input2">Enter file size</label>
+                <input type="number" id="input2" placeholder="Enter file size" disabled>
+                <select id="unit2">
+                    <option value="bytes">Bytes</option>
+                    <option value="kilobytes">Kilobytes</option>
+                    <option value="megabytes">Megabytes</option>
+                    <option value="gigabytes">Gigabytes</option>
+                    <option value="terabytes">Terabytes</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <button id="convert-btn">Convert</button>
+            <button id="reset-btn">Reset</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
