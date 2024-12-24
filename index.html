@@ -1,77 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Converter</title>
-    <style>
-        /* Basic styling */
-        html, body {
-            height: 100%; /* Full height */
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .extra-input {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        input, select {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        input {
-            width: 200px;
-        }
-
-        select {
-            width: 150px;
-        }
-
-        .switch-button {
-            padding: 10px 20px;
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .switch-button:hover {
-            background-color: #1976D2;
-        }
-
-        .output-box {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 300px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>File Converter</h1>
@@ -88,6 +22,9 @@
                 <option value="terabytes">Terabytes</option>
             </select>
         </div>
+
+        <!-- Convert button -->
+        <button class="convert-button" id="convertButton">Convert</button>
 
         <!-- Switch button -->
         <button class="switch-button" id="switchButton">Switch Conversion</button>
@@ -110,94 +47,6 @@
         </div>
     </div>
 
-    <script>
-        // Get references to elements
-        const switchButton = document.getElementById('switchButton');
-        const inputValue = document.getElementById('inputValue');
-        const inputUnit = document.getElementById('inputUnit');
-        const outputValue = document.getElementById('outputValue');
-        const outputUnit = document.getElementById('outputUnit');
-        const outputBox = document.getElementById('outputBox');
-
-        // Conversion function (basic example for data sizes)
-        function convertValue() {
-            let inputValueNum = parseFloat(inputValue.value);
-            if (isNaN(inputValueNum) || inputValue.value === "") {
-                outputBox.textContent = "Please enter a valid number.";
-                return;
-            }
-
-            const inputUnitValue = inputUnit.value;
-            const outputUnitValue = outputUnit.value;
-            let result;
-
-            // Convert input value to bytes first
-            switch (inputUnitValue) {
-                case "bytes":
-                    result = inputValueNum;
-                    break;
-                case "kilobytes":
-                    result = inputValueNum * 1024;
-                    break;
-                case "megabytes":
-                    result = inputValueNum * 1024 * 1024;
-                    break;
-                case "gigabytes":
-                    result = inputValueNum * 1024 * 1024 * 1024;
-                    break;
-                case "terabytes":
-                    result = inputValueNum * 1024 * 1024 * 1024 * 1024;
-                    break;
-                default:
-                    result = inputValueNum;
-            }
-
-            // Convert bytes to the output unit
-            switch (outputUnitValue) {
-                case "bytes":
-                    result = result;
-                    break;
-                case "kilobytes":
-                    result = result / 1024;
-                    break;
-                case "megabytes":
-                    result = result / (1024 * 1024);
-                    break;
-                case "gigabytes":
-                    result = result / (1024 * 1024 * 1024);
-                    break;
-                case "terabytes":
-                    result = result / (1024 * 1024 * 1024 * 1024);
-                    break;
-                default:
-                    result = result;
-            }
-
-            // Display result in the output box
-            outputValue.value = result.toFixed(4);
-            outputBox.textContent = `Converted value: ${result.toFixed(4)} ${outputUnit.value}`;
-        }
-
-        // Event listener for the switch button (toggle units)
-        switchButton.addEventListener('click', function() {
-            // Swap input and output units and values
-            const tempValue = inputValue.value;
-            const tempUnit = inputUnit.value;
-
-            inputValue.value = outputValue.value;
-            inputUnit.value = outputUnit.value;
-
-            outputValue.value = tempValue;
-            outputUnit.value = tempUnit;
-
-            // Trigger the conversion after the switch
-            convertValue();
-        });
-
-        // Automatically convert when input value or units change
-        inputValue.addEventListener('input', convertValue);
-        inputUnit.addEventListener('change', convertValue);
-        outputUnit.addEventListener('change', convertValue);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
